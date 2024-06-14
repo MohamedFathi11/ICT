@@ -120,7 +120,7 @@ if __name__=='__main__':
 
                 current_url=os.path.join(opts.save_url,'condition_%d'%(i+1))
                 os.makedirs(current_url,exist_ok=True)
-                current_img=C[pixels[i]].view(opts.image_size, opts.image_size, 3).numpy().astype(np.uint8)
+                current_img=C[pixels[i].to('cpu')].view(opts.image_size, opts.image_size, 3).numpy().astype(np.uint8)
                 tmp=Image.fromarray(current_img)
                 tmp.save(os.path.join(current_url,img_name))
             print("Finish %s"%(img_name))
